@@ -1,0 +1,54 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+from bisect import bisect
+#
+# Complete the 'climbingLeaderboard' function below.
+#
+# The function is expected to return an INTEGER_ARRAY.
+# The function accepts following parameters:
+#  1. INTEGER_ARRAY ranked
+#  2. INTEGER_ARRAY player
+#
+
+def climbingLeaderboard(ranked, player):
+    playerrank=[]
+    uniq_rank=sorted(list(set(ranked)))
+    i_rank=len(uniq_rank)
+    for i in player:
+               
+     
+      
+        ind=bisect(uniq_rank,i) #returns the index where the score has to be #                                            #inserted in the list bisect(list,score)
+            
+            
+           
+        playerrank.append(len(uniq_rank)-ind+1)
+    return playerrank
+
+    
+        
+    
+    # Write your code here
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    ranked_count = int(input().strip())
+
+    ranked = list(map(int, input().rstrip().split()))
+
+    player_count = int(input().strip())
+
+    player = list(map(int, input().rstrip().split()))
+
+    result = climbingLeaderboard(ranked, player)
+
+    fptr.write('\n'.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
